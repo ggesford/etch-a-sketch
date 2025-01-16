@@ -1,0 +1,30 @@
+@font-face {
+    font-family:'Roboto';
+    src:url(../fonts/Roboto-Regular.ttf);
+}
+
+body {
+    background-color:#E0E1DD;
+    padding:0px;
+    margin:0px;
+    display:flex;
+    font-family:'Roboto', Arial, sans-serif;
+    font-size: 16px;
+}
+
+#sidebar {
+    background-color:#415A77;
+    display:flex;
+    flex-direction: column;
+    gap:16px;
+    
+}
+
+button {
+    background-color:#1B263B;
+    color:#E0E1DD;
+    padding: 16px;
+    border-radius: 12px;
+    border:0 solid #1B263B;
+    
+}
