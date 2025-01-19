@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pixel = document.createElement('div');
         pixel.style.height = `${size}px`;
         pixel.style.width = `${size}px`;
+        pixel.style.backgroundColor = 'white';
         pixel.classList.add('pixel');       
         pixel.addEventListener('mouseover', () => {
             if (isMouseDown) {
@@ -39,4 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     startSketch(16);
+
+    const newPad = document.querySelector('#newPad');
+
+    newPad.addEventListener('click', () => {
+        const pixels = document.querySelectorAll('.pixel');
+        let gridSize = prompt('Select Grid Size (max 100)', '');
+        if (isNaN(gridSize) || gradSize <= 0 || gridSize > 100) {
+            alert('Invalid Input, Please Select a Number Between 1 and 100');
+            return;
+        };
+        pixels.forEach(sketchpad.removeChild(pixels));
+        startSketch(gridSize);
+    });
 });
