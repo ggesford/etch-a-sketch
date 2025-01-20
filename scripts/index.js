@@ -54,6 +54,30 @@ document.addEventListener('DOMContentLoaded', () => {
             sketchpad.removeChild(pixel);
         });
         startSketch(gridSize);
-        console.log(gridSize);
+    });
+
+    const rainbowInk = document.querySelector('#rainbow');
+
+    rainbowInk.addEventListener('click', () => {
+        const allPixels = document.querySelectorAll('.pixel');
+        allPixels.forEach((pixel) => {
+            let color = '#'+('00000'+(Math.random()*(1<<24)|0).toString(16)).slice(-6);
+            pixel.removeEventListener('mouseover', () => {
+                if (isMouseDown) {
+                    pixel.style.backgroundColor = "black";
+                };
+            });
+            pixel.removeEventListener('mousedown', () => {
+                pixel.style.backgroundColor = 'black';
+            }); 
+            pixel.addEventListener('mouseover', () => {
+                if (isMouseDown) {
+                    pixel.style.backgroundColor = `${color}`;
+                };
+            });
+            pixel.addEventListener('mousedown', () => {
+                pixel.style.backgroundColor = `${color}`;
+            });    
+        });
     });
 });
