@@ -44,13 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const newPad = document.querySelector('#newPad');
 
     newPad.addEventListener('click', () => {
-        const pixels = document.querySelectorAll('.pixel');
+        const allPixels = document.querySelectorAll('.pixel');
         let gridSize = prompt('Select Grid Size (max 100)', '');
-        if (isNaN(gridSize) || gradSize <= 0 || gridSize > 100) {
+        if (isNaN(gridSize) || gridSize <= 0 || gridSize > 100) {
             alert('Invalid Input, Please Select a Number Between 1 and 100');
             return;
         };
-        pixels.forEach(sketchpad.removeChild(pixels));
+        allPixels.forEach( (pixel) => {
+            sketchpad.removeChild(pixel);
+        });
         startSketch(gridSize);
+        console.log(gridSize);
     });
 });

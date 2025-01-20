@@ -17,7 +17,7 @@ html, body {
     
 }
 
-#barcontainer {
+#barContainer {
     background-color:#415A77;
     padding-right:8px;
     padding-bottom:8px;
@@ -55,7 +55,7 @@ button:hover {
     display:flex;
     flex-wrap: wrap;
     background-color: white;
-    margin:0px;
+    margin:0px 0px 0px 25%;
     padding:0px;
     height:720px;
     width:720px;
