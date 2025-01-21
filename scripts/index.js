@@ -8,14 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
         pixel.style.width = `${size}px`;
         pixel.style.backgroundColor = 'white';
         pixel.classList.add('pixel');       
-        pixel.addEventListener('mouseover', () => {
+        pixel.addEventListener('mouseover', (event) => {
             if (isMouseDown) {
                 pixel.style.backgroundColor = "black";
+                changeOpacity(event.target);
             };
             
         });
-        pixel.addEventListener('mousedown', () => {
+        pixel.addEventListener('mousedown', (event) => {
             pixel.style.backgroundColor = 'black';
+            changeOpacity(event.target);
         });
         return pixel;
     };
@@ -62,22 +64,74 @@ document.addEventListener('DOMContentLoaded', () => {
         const allPixels = document.querySelectorAll('.pixel');
         allPixels.forEach((pixel) => {
             let color = '#'+('00000'+(Math.random()*(1<<24)|0).toString(16)).slice(-6);
-            pixel.removeEventListener('mouseover', () => {
+            pixel.removeEventListener('mouseover', (event) => {
                 if (isMouseDown) {
                     pixel.style.backgroundColor = "black";
+                    changeOpacity(event.target)
                 };
             });
-            pixel.removeEventListener('mousedown', () => {
+            pixel.removeEventListener('mousedown', (event) => {
                 pixel.style.backgroundColor = 'black';
+                changeOpacity(event.target)
             }); 
-            pixel.addEventListener('mouseover', () => {
+            pixel.addEventListener('mouseover', (event) => {
                 if (isMouseDown) {
                     pixel.style.backgroundColor = `${color}`;
+                    changeOpacity(event.target);
                 };
             });
-            pixel.addEventListener('mousedown', () => {
+            pixel.addEventListener('mousedown', (event) => {
                 pixel.style.backgroundColor = `${color}`;
+                changeOpacity(event.target);
             });    
         });
     });
+
+    const blackInk = document.querySelector('#blackInk');
+
+    blackInk.addEventListener('click', () => {
+        const allPixels = document.querySelectorAll('.pixel');
+        allPixels.forEach((pixel) => {
+            pixel.removeEventListener('mouseover', (event) => {
+                if (isMouseDown) {
+                    pixel.style.backgroundColor = `${color}`;
+                    changeOpacity(event.target)
+                };
+            });
+            pixel.removeEventListener('mousedown', (event) => {
+                pixel.style.backgroundColor = `${color}`;
+                changeOpacity(event.target);
+            }); 
+            pixel.addEventListener('mouseover', (event) => {
+                if (isMouseDown) {
+                    pixel.style.backgroundColor = 'black';
+                    changeOpacity(event.target);
+                };
+            });
+            pixel.addEventListener('mousedown', (event) => {
+                pixel.style.backgroundColor = 'black';
+                changeOpacity(event.target);
+            });    
+        });
+    });
+
+    function changeOpacity(pixel) {
+        if (pixel.classList.contains('shadePixel')) {
+            let currentOpacity = parseFloat(pixel.style.opacity) || 0;    
+            currentOpacity = Math.min(currentOpacity + 0.1, 1);
+            pixel.style.opacity = currentOpacity;
+            console.log(`Pixel Opacity: ${currentOpacity}`);
+        };   
+        
+    };
+
+    const shade = document.querySelector('#shade');
+
+    shade.addEventListener('click', () => {
+        const allPixels = document.querySelectorAll('.pixel');
+
+        allPixels.forEach((pixel) => {
+            pixel.classList.toggle('shadePixel');
+        })
+    })
 });

@@ -37,7 +37,7 @@ button {
     background-color:#415A77;
     color:#E0E1DD;
     box-sizing: border-box;
-    width:105px;
+    width:106px;
     height:48px;
     padding: 16px;
     margin:16px;
@@ -73,3 +73,4 @@ button:hover {
     border:0px;
     flex:0 0 auto;
 }
+
